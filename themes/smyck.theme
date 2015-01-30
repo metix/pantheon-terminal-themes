@@ -1,0 +1,35 @@
+{
+  "name": "pantheon-smyck",
+  "description": "a dark theme for the pantheon terminal (elementary OS)",
+  "url": "http://color.smyck.org/",
+  "version": "0.1",
+  "style":
+  {
+    "opacity": 100,
+    "background": "#242424",
+    "foreground": "#dddddd",
+    "cursor-color": "#FFFA04",
+    "palette":
+    {
+      "black": "#000000",
+      "red": "#C75646",
+      "green": "#8EB33B",
+      "yellow": "#D0B03C",
+      "blue": "#72B3CC",
+      "magenta": "#C8A0D1",
+      "cyan": "#218693",
+      "white": "#B0B0B0",
+
+      "lightblack": "#5D5D5D",
+      "lightred": "#E09690",
+      "lightgreen": "#CDEE69",
+      "lightyellow": "#FFE377",
+      "lightblue": "#9CD9F0",
+      "lightmagenta": "#FBB1F9",
+      "lightcyan": "#77DFD8",
+      "lightwhite": "#F7F7F7"
+    }
+
+  }
+
+}

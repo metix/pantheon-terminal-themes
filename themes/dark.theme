@@ -1,0 +1,35 @@
+{
+  "name": "pantheon-dark",
+  "description": "a dark theme for the pantheon terminal (elementary OS)",
+  "url": "http://toddwerth.com/2008/04/30/the-last-vim-color-scheme-youll-ever-need/",
+  "version": "0.1",
+  "style":
+  {
+    "opacity": 100,
+    "background": "#111111",
+    "foreground": "#F6F3E8",
+    "cursor-color": "#FFA560",
+    "palette":
+    {
+      "black": "#4E4E4E",
+      "red": "#FF6C60",
+      "green": "#A8FF60",
+      "yellow": "#FFFFB6",
+      "blue": "#96CBFE",
+      "magenta": "#FF73FD",
+      "cyan": "#C6C5FE",
+      "white": "#EEEEEE",
+
+      "lightblack": "#7C7C7C",
+      "lightred": "#FFB6B0",
+      "lightgreen": "#CEFFAB",
+      "lightyellow": "#FFFFCB",
+      "lightblue": "#B5DCFE",
+      "lightmagenta": "#FF9CFE",
+      "lightcyan": "#DFDFFE",
+      "lightwhite": "#FFFFFF"
+    }
+
+  }
+
+}
