@@ -42,10 +42,10 @@ else:
 print "trying to parse theme " + theme_path
 theme = json.loads(open(theme_path, "r").read())
 
-print "loaded theme '" + theme["name"] + "'"
-
 os.system(sets + " opacity " + str(theme["style"]["opacity"]))
 os.system(sets + " background \"" + theme["style"]["background"] + "\"")
 os.system(sets + " foreground \"" + theme["style"]["foreground"] + "\"")
 os.system(sets + " cursor-color \"" + theme["style"]["cursor-color"] + "\"")
 os.system(sets + " palette \"" + createPalette() + "\"")
+
+print "loaded theme '" + theme["name"] + "'"
