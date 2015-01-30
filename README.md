@@ -6,6 +6,7 @@ this script is written in python for the linux distro 'elementary OS [luna]'.
 ## features
 - themes are defined in JSON
 - themes can be added/changed easily
+- current theme can be saved
 
 ## requirements
 - python 2.7.3 or higher
@@ -13,8 +14,12 @@ this script is written in python for the linux distro 'elementary OS [luna]'.
 ## usage
 a few themes are already defined in the directory 'themes'
 
-
-open a shell and type:
+load a theme:
 ```
-./theme-switcher themes/dark.theme
+./theme-switcher.py --load themes/dark.theme
+```
+
+save current theme:
+```
+./theme-switcher.py --save themes/mytheme.theme
 ```
