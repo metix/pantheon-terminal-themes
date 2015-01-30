@@ -23,3 +23,8 @@ save current theme:
 ```
 ./theme-switcher.py --save themes/mytheme.theme
 ```
+
+show all color variations of current theme:
+```
+./theme-switcher.py --test
+```

@@ -36,16 +36,39 @@ def setValue(key, value):
 		print "error while trying to execute 'gsettings': " + str(msg)
 		sys.exit(-1)
 
+def test_colors():
+	text = "hello world"
+	for i in range(7):
+	    # dark
+	    sys.stdout.write("3%dm \33[2;3%dm%s\33[0m " % (i, i, text))
+
+	    # light
+	    sys.stdout.write("\33[0;3%dm%s\33[0m " % (i, text))
+
+	    # bold
+	    sys.stdout.write("\33[1;3%dm%s\33[0m " % (i, text))
+
+	    # underline
+	    sys.stdout.write("\33[4;3%dm%s\33[0m " % (i, text))
+
+	    # strike
+	    sys.stdout.write("\33[9;3%dm%s\33[0m\n" % (i, text))
+
 parser = argparse.ArgumentParser(description='theme switcher for pantheon-terminal')
 
 parser.add_argument('--load', '-l', action="store_true", help="load a theme")
 parser.add_argument('--save', action="store_true", help="save the current theme in a new file")
-parser.add_argument("themefile", help="path of .theme file")
+parser.add_argument('--test', '-t', action="store_true", help="print text with all colors")
+parser.add_argument("themefile", nargs='?', help="path of .theme file")
 
 try:
 	args = parser.parse_args()
 except IOError, msg:
 	parser.error(str(msg))
+
+if args.test == True:
+	test_colors()
+	sys.exit(0)
 
 if args.load == False and args.save == False or args.load == True and args.save == True:
 	parser.error("you have to say '--load' to set a theme xor '--save' to save the current theme")
