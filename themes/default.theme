@@ -1,0 +1,30 @@
+{
+    "name": "pantheon-default",
+    "description": "this is the default pantheon color theme of elementary OS [luna]",
+    "url": "",
+    "version": "0.1",
+    "style": {
+        "opacity": 80,
+        "background": "#101010",
+        "foreground": "#f2f2f2",
+        "cursor-color": "#FFFFFF",
+        "palette": {
+            "black": "#303030",
+            "red": "#e1321a",
+            "green": "#6ab017",
+            "yellow": "#ffc005",
+            "blue": "#004f9e",
+            "magenta": "#ec0048",
+            "cyan": "#2aa7e7",
+            "white": "#f2f2f2",
+            "lightblack": "#5d5d5d",
+            "lightred": "#ff361e",
+            "lightgreen": "#7bc91f",
+            "lightyellow": "#ffd00a",
+            "lightblue": "#0071ff",
+            "lightmagenta": "#ff1d62",
+            "lightcyan": "#4bb8fd",
+            "lightwhite": "#a020f0"
+        }
+    }
+}
