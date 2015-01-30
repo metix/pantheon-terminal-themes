@@ -23,10 +23,18 @@ from collections import OrderedDict
 ppath = "org.pantheon.terminal.settings"
 
 def getValue(key):
-	return Popen(["gsettings", "get", ppath, key], stdout=PIPE).communicate()[0].rstrip().replace("'", "")
+	try:
+		return Popen(["gsettings", "get", ppath, key], stdout=PIPE).communicate()[0].rstrip().replace("'", "")
+	except OSError, msg:
+		print "error while trying to execute 'gsettings': " + str(msg)
+		sys.exit(-1)
 
 def setValue(key, value):
-	Popen(["gsettings", "set", ppath, key, value], stdout=PIPE).communicate()[0]
+	try:
+		Popen(["gsettings", "set", ppath, key, value], stdout=PIPE).communicate()[0]
+	except OSError, msg:
+		print "error while trying to execute 'gsettings': " + str(msg)
+		sys.exit(-1)
 
 parser = argparse.ArgumentParser(description='theme switcher for pantheon-terminal')
 
@@ -40,10 +48,18 @@ except IOError, msg:
 	parser.error(str(msg))
 
 if args.load == False and args.save == False or args.load == True and args.save == True:
-	parser.error("you have to say '--set' to set a theme xor '--save' to save the current theme")
+	parser.error("you have to say '--load' to set a theme xor '--save' to save the current theme")
 elif args.load == True:
 	print "trying to parse theme " + args.themefile
-	theme = json.loads(open(args.themefile, "r").read())
+
+	try:
+		theme = json.loads(open(args.themefile, "r").read())
+	except ValueError, msg:
+		print "error while parsing json: " + str(msg)
+		sys.exit(-1)
+	except IOError, msg:
+		print "error while reading file: " + str(msg)
+		sys.exit(-1)
 
 	def createPalette():
 	    palette = theme["style"]["palette"]["black"] + ":"
@@ -93,6 +109,7 @@ elif args.save == True:
 		jpalette["lightwhite"] = palette[15]
 
 		return jpalette
+
 	theme = OrderedDict({})
 	theme["name"] = ""
 	theme["description"] = ""
@@ -106,5 +123,10 @@ elif args.save == True:
 	theme["style"]["palette"] = parsePalette()
 	theme_json = json.dumps(OrderedDict(theme), indent=4, separators=(',', ': '))
 
-	open(args.themefile, "w").write(theme_json)
+	try:
+		open(args.themefile, "w").write(theme_json)
+	except IOError, msg:
+		print "error while writing theme: " + str(msg)
+		sys.exit(-1)
+
 	print "saved to " + args.themefile
