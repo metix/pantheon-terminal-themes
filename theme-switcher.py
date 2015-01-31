@@ -39,20 +39,20 @@ def setValue(key, value):
 def test_colors():
 	text = "hello world"
 	for i in range(7):
-	    # dark
-	    sys.stdout.write("3%dm \33[2;3%dm%s\33[0m " % (i, i, text))
+		# dark
+		sys.stdout.write("3%dm \33[2;3%dm%s\33[0m " % (i, i, text))
 
-	    # light
-	    sys.stdout.write("\33[0;3%dm%s\33[0m " % (i, text))
+		# light
+		sys.stdout.write("\33[0;3%dm%s\33[0m " % (i, text))
 
-	    # bold
-	    sys.stdout.write("\33[1;3%dm%s\33[0m " % (i, text))
+		# bold
+		sys.stdout.write("\33[1;3%dm%s\33[0m " % (i, text))
 
-	    # underline
-	    sys.stdout.write("\33[4;3%dm%s\33[0m " % (i, text))
+		# underline
+		sys.stdout.write("\33[4;3%dm%s\33[0m " % (i, text))
 
-	    # strike
-	    sys.stdout.write("\33[9;3%dm%s\33[0m\n" % (i, text))
+		# strike
+		sys.stdout.write("\33[9;3%dm%s\33[0m\n" % (i, text))
 
 parser = argparse.ArgumentParser(description='theme switcher for pantheon-terminal')
 
@@ -85,23 +85,23 @@ elif args.load == True:
 		sys.exit(-1)
 
 	def createPalette():
-	    palette = theme["style"]["palette"]["black"] + ":"
-	    palette += theme["style"]["palette"]["red"] + ":"
-	    palette += theme["style"]["palette"]["green"] + ":"
-	    palette += theme["style"]["palette"]["yellow"] + ":"
-	    palette += theme["style"]["palette"]["blue"] + ":"
-	    palette += theme["style"]["palette"]["magenta"] + ":"
-	    palette += theme["style"]["palette"]["cyan"] + ":"
-	    palette += theme["style"]["palette"]["white"] + ":"
-	    palette += theme["style"]["palette"]["lightblack"] + ":"
-	    palette += theme["style"]["palette"]["lightred"] + ":"
-	    palette += theme["style"]["palette"]["lightgreen"] + ":"
-	    palette += theme["style"]["palette"]["lightyellow"] + ":"
-	    palette += theme["style"]["palette"]["lightblue"] + ":"
-	    palette += theme["style"]["palette"]["lightmagenta"] + ":"
-	    palette += theme["style"]["palette"]["lightcyan"] + ":"
-	    palette += theme["style"]["palette"]["lightwhite"]
-	    return palette
+		palette = theme["style"]["palette"]["black"] + ":"
+		palette += theme["style"]["palette"]["red"] + ":"
+		palette += theme["style"]["palette"]["green"] + ":"
+		palette += theme["style"]["palette"]["yellow"] + ":"
+		palette += theme["style"]["palette"]["blue"] + ":"
+		palette += theme["style"]["palette"]["magenta"] + ":"
+		palette += theme["style"]["palette"]["cyan"] + ":"
+		palette += theme["style"]["palette"]["white"] + ":"
+		palette += theme["style"]["palette"]["lightblack"] + ":"
+		palette += theme["style"]["palette"]["lightred"] + ":"
+		palette += theme["style"]["palette"]["lightgreen"] + ":"
+		palette += theme["style"]["palette"]["lightyellow"] + ":"
+		palette += theme["style"]["palette"]["lightblue"] + ":"
+		palette += theme["style"]["palette"]["lightmagenta"] + ":"
+		palette += theme["style"]["palette"]["lightcyan"] + ":"
+		palette += theme["style"]["palette"]["lightwhite"]
+		return palette
 
 	setValue("opacity", str(theme["style"]["opacity"]))
 	setValue("background", theme["style"]["background"])
