@@ -16,6 +16,7 @@ import sys
 import json
 import os
 import argparse
+import fileinput
 from subprocess import Popen, PIPE
 from collections import OrderedDict
 
@@ -147,7 +148,13 @@ elif args.save == True:
 	theme_json = json.dumps(OrderedDict(theme), indent=4, separators=(',', ': '))
 
 	try:
-		open(args.themefile, "w").write(theme_json)
+		if os.path.isfile(args.themefile):
+			decision = raw_input("theme is already defined. override? [y/n]? ")
+			if decision == "y":
+				open(args.themefile, "w").write(theme_json)
+			else:
+				print "aborted."
+				sys.exit(0)
 	except IOError, msg:
 		print "error while writing theme: " + str(msg)
 		sys.exit(-1)
