@@ -6,10 +6,14 @@
 #
 # Usage:
 # set a theme:
-# ./theme-switcher.py load path/to/theme
+# ./theme-switcher.py load [options] path/to/theme
+#	[options]
+#		--font      load font and fontsize too (if font is defined in theme)
 #
 # save currrent theme:
-# ./theme-switcher.py save path/to/newtheme
+# ./theme-switcher.py save [options] path/to/newtheme
+#	[options]
+#		--font      save font and fontsize too
 #
 # print all color variations of current eheme
 # ./theme-switcher.py test
@@ -63,10 +67,12 @@ subparsers = parser.add_subparsers(help="describes the mode")
 
 parser_save = subparsers.add_parser("save", help="save current file")
 parser_save.set_defaults(which="save")
+parser_save.add_argument("--font", action="store_true", help="save font and fontsize too")
 parser_save.add_argument("themefile", help="path of theme-file")
 
 parser_load = subparsers.add_parser("load", help="load a theme of a theme-file")
 parser_load.set_defaults(which="load")
+parser_load.add_argument("--font", action="store_true", help="load font and fontsize too (if defined)")
 parser_load.add_argument("themefile", help="path of theme-file")
 
 parser_test = subparsers.add_parser("test", help="print text with all color variation")
@@ -74,7 +80,6 @@ parser_test.set_defaults(which="test")
 
 try:
 	args = parser.parse_args()
-	print args
 except IOError, msg:
 	parser.error(str(msg))
 
@@ -118,6 +123,8 @@ elif args.which == "load":
 	setValue("foreground", theme["style"]["foreground"])
 	setValue("cursor-color", theme["style"]["cursor-color"])
 	setValue("palette", createPalette())
+	if args.font == True and "font" in theme["style"]:
+		setValue("font", theme["style"]["font"])
 
 	print "loaded theme '" + theme["name"] + "'"
 elif args.which == "save":
@@ -153,6 +160,8 @@ elif args.which == "save":
 	theme["style"]["background"] = getValue("background")
 	theme["style"]["foreground"] = getValue("foreground")
 	theme["style"]["cursor-color"] = getValue("cursor-color")
+	if args.font == True:
+		theme["style"]["font"] = getValue("font")
 	theme["style"]["palette"] = parsePalette()
 	theme_json = json.dumps(OrderedDict(theme), indent=4, separators=(',', ': '))
 
