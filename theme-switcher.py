@@ -6,10 +6,13 @@
 #
 # Usage:
 # set a theme:
-# ./theme-switcher.py --load path/to/theme
+# ./theme-switcher.py load path/to/theme
 #
 # save currrent theme:
-# ./theme-switcher.py --save path/to/newtheme
+# ./theme-switcher.py save path/to/newtheme
+#
+# print all color variations of current eheme
+# ./theme-switcher.py test
 #
 
 import sys
@@ -56,24 +59,30 @@ def test_colors():
 		sys.stdout.write("\33[9;3%dm%s\33[0m\n" % (i, text))
 
 parser = argparse.ArgumentParser(description='theme switcher for pantheon-terminal')
+subparsers = parser.add_subparsers(help="describes the mode")
 
-parser.add_argument('--load', '-l', action="store_true", help="load a theme")
-parser.add_argument('--save', action="store_true", help="save the current theme in a new file")
-parser.add_argument('--test', '-t', action="store_true", help="print text with all colors")
-parser.add_argument("themefile", nargs='?', help="path of .theme file")
+parser_save = subparsers.add_parser("save", help="save current file")
+parser_save.set_defaults(which="save")
+parser_save.add_argument("themefile", help="path of theme-file")
+
+parser_load = subparsers.add_parser("load", help="load a theme of a theme-file")
+parser_load.set_defaults(which="load")
+parser_load.add_argument("themefile", help="path of theme-file")
+
+parser_test = subparsers.add_parser("test", help="print text with all color variation")
+parser_test.set_defaults(which="test")
 
 try:
 	args = parser.parse_args()
+	print args
 except IOError, msg:
 	parser.error(str(msg))
 
-if args.test == True:
+if args.which == "test":
 	test_colors()
 	sys.exit(0)
 
-if args.load == False and args.save == False or args.load == True and args.save == True:
-	parser.error("you have to say '--load' to set a theme xor '--save' to save the current theme")
-elif args.load == True:
+elif args.which == "load":
 	print "trying to parse theme " + args.themefile
 
 	try:
@@ -111,7 +120,7 @@ elif args.load == True:
 	setValue("palette", createPalette())
 
 	print "loaded theme '" + theme["name"] + "'"
-elif args.save == True:
+elif args.which == "save":
 	def parsePalette():
 		palette = getValue("palette").split(":")
 		jpalette = OrderedDict({})
@@ -150,11 +159,10 @@ elif args.save == True:
 	try:
 		if os.path.isfile(args.themefile):
 			decision = raw_input("theme is already defined. override? [y/n]? ")
-			if decision == "y":
-				open(args.themefile, "w").write(theme_json)
-			else:
-				print "aborted."
+			if decision != "y":
+				print "abort."
 				sys.exit(0)
+		open(args.themefile, "w").write(theme_json)
 	except IOError, msg:
 		print "error while writing theme: " + str(msg)
 		sys.exit(-1)

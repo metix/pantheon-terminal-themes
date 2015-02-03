@@ -16,15 +16,15 @@ a few themes are already defined in the directory 'themes'
 
 load a theme:
 ```
-./theme-switcher.py --load themes/dark.theme
+./theme-switcher.py load themes/dark.theme
 ```
 
 save current theme:
 ```
-./theme-switcher.py --save themes/mytheme.theme
+./theme-switcher.py save themes/mytheme.theme
 ```
 
 show all color variations of current theme:
 ```
-./theme-switcher.py --test
+./theme-switcher.py test
 ```
