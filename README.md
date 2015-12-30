@@ -1,7 +1,7 @@
 # pantheon-themes - simple theme switcher
 pantheon-themes can switch the color theme of the pantheon terminal.
 
-this script is written in python for the linux distro 'elementary OS [luna]'.
+this script is written in python for the linux distro 'elementary OS [freya]'.
 
 ## features
 - themes are defined in JSON
