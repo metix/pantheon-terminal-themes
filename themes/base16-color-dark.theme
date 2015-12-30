@@ -1,0 +1,30 @@
+{
+    "name": "",
+    "description": "",
+    "url": "",
+    "version": "",
+    "style": {
+        "opacity": 100,
+        "background": "#111111",
+        "foreground": "#bbbbbb",
+        "cursor-color": "#c5c8c6",
+        "palette": {
+            "black": "#111111",
+            "red": "#ff4136",
+            "green": "#2ecc40",
+            "yellow": "#ffdc00",
+            "blue": "#0074d9",
+            "magenta": "#b10dc9",
+            "cyan": "#7fdbff",
+            "white": "#bbbbbb",
+            "lightblack": "#777777",
+            "lightred": "#ff4136",
+            "lightgreen": "#2ecc40",
+            "lightyellow": "#ffdc00",
+            "lightblue": "#0074d9",
+            "lightmagenta": "#b10dc9",
+            "lightcyan": "#7fdbff",
+            "lightwhite": "#ffffff"
+        }
+    }
+}
